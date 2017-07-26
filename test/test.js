@@ -239,15 +239,6 @@ describe('Test matrix', function() {
       ];
       assertMatrix(matrix, ['flower'], [{ start: [2, 0], end: [2, 5] }]);
   });
-  it('Should solve a puzzle, when width is variable', function() {
-    const matrix = [
-        'ads',
-        'weqw',
-        'flowers',
-        'as',
-      ];
-      assertMatrix(matrix, ['flower'], [{ start: [2, 0], end: [2, 5] }]);
-  });
   it('Should solve this real 11x11 puzzle', function() {
     const matrix = [
       'lecliffbvic',
