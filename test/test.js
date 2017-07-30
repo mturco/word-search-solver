@@ -1,5 +1,6 @@
 var expect = require('chai').expect;
 var wordSearchSolver = require('../index.js');
+var wordFinder = require('../src/word-finder.js');
 
 const matrix = [
         'abcdef',
@@ -9,6 +10,12 @@ const matrix = [
         'yzabcd',
         'efghij',
 ];
+
+describe('wordFinder', function() {
+  it('should not be possible to create a new instance', () => {
+    expect(() => new wordFinder().FindWord('test')).to.throw(Error, /Matrix has not been set/);
+  });
+});
 
 describe('Test matrix', function() {
   describe('Direction: right', function() {
