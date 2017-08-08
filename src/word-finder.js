@@ -53,6 +53,25 @@ module.exports = class WordFinder {
     return result;
   }
 
+  FindWordInDirectionLeftUp(word, column, row) {
+    const result = {
+      firstLetterPosition: [row, column], 
+      match: false
+    }
+    if (column - (this.wordLength - 1) < 0 || row - (this.wordLength - 1) < 0) return result;
+      
+     for(let c = 1; c <= (this.wordLength - 1); c++) {
+      if(this.matrix[row - c][column - c] !== word[c]) {
+        return result;
+      }
+    }
+    
+    result.match = true;
+    result.lastLetterPosition = [row - (this.wordLength - 1), column - (this.wordLength - 1)];
+    return result;
+  }
+
+
 
 
   FindWordFromStartPoint(word, startPoint) {
@@ -65,23 +84,13 @@ module.exports = class WordFinder {
       // Left
       const resultDirectionLeft = this.FindWordInDirectionLeft(word, startColumn, startRow);
       if(resultDirectionLeft.match) return [resultDirectionLeft.firstLetterPosition, resultDirectionLeft.lastLetterPosition];
+      // Left up
+      const resultDirectionLeftUp = this.FindWordInDirectionLeftUp(word, startColumn, startRow);
+      if(resultDirectionLeftUp.match) return [resultDirectionLeftUp.firstLetterPosition, resultDirectionLeftUp.lastLetterPosition];
       
-      
+
       const direction = possibleDirections[d];
       switch(direction) {
-        case 'lu':
-          if (startColumn - (this.wordLength - 1) >= 0 && startRow - (this.wordLength - 1) >= 0) {
-            let match = true;
-            for(let c = 1; c <= (this.wordLength - 1); c++) {
-              if(this.matrix[startRow - c][startColumn - c] !== word[c]) {
-                match = false;
-              }
-            }
-            if(match) return [[startRow,startColumn], [startRow - (this.wordLength - 1), startColumn - (this.wordLength - 1)]];
-          } else {
-            // console.log('Does not fit to left up');
-          }
-          break;
         case 'u':
           if (startRow - (this.wordLength - 1) >= 0) {
             let match = true;
