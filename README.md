@@ -1,3 +1,5 @@
+Fork of [JHotterbeekx/word-search-solver](https://github.com/JHotterbeekx/word-search-solver) to compile to ES5 for use in browsers.
+
 ## word-search-solver
 
 
